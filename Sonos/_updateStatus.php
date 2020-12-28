@@ -6,6 +6,11 @@ $ip                    = gethostbyname(IPS_GetProperty(IPS_GetParent($_IPS["SELF
 $timeout               = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "TimeOut");
 $frequency             = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "UpdateStatusFrequency");
 $frequencyNotAvailable = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "UpdateStatusFrequencyNA");
+$AlbumArtHeight        = IPS_GetProperty(IPS_GetParent($_IPS["SELF"]), "AlbumArtHeight");
+
+if (!isset($AlbumArtHeight) || $AlbumArtHeight == 0 ){
+  $AlbumArtHeight = 170;	
+} 
 
 // Get all needed Variable IDs
 $vidInstance      = IPS_GetParent($_IPS["SELF"]);
@@ -179,9 +184,9 @@ if ($MemberOfGroup){
                             </td>";
 
 			if(strlen($image) > 0) {
-			   $detailHTML .= "<td width=\"170px\" valign=\"top\">
-                              <div style=\"width: 170px; height: 170px; perspective: 170px; right: 0px; margin-bottom: 10px;\">
-                              	<img src=\"".@$image."\" style=\"max-width: 170px; max-height: 170px; -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.88, transparent), to(rgba(255, 255, 255, 0.5))); transform: rotateY(-10deg) translateZ(-35px);\">
+			   $detailHTML .= "<td width=\"".$AlbumArtHeight."px\" valign=\"top\">
+                              <div style=\"width: ".$AlbumArtHeight."px; height: ".$AlbumArtHeight."px; perspective: ".$AlbumArtHeight."px; right: 0px; margin-bottom: 10px;\">
+                              	<img src=\"".@$image."\" style=\"max-width: ".$AlbumArtHeight."px; max-height: ".$AlbumArtHeight."px; -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.88, transparent), to(rgba(255, 255, 255, 0.5))); transform: rotateY(-10deg) translateZ(-35px);\">
                               </div>
                             </td>";
 			}
@@ -213,9 +218,9 @@ if ($MemberOfGroup){
                             </td>";
 
          if(isset($positionInfo['albumArtURI'])) {
-            $detailHTML .= "<td width=\"170px\" valign=\"top\">
-                              <div style=\"width: 170px; height: 170px; perspective: 170px; right: 0px; margin-bottom: 10px;\">
-                              	<img src=\"".@$positionInfo['albumArtURI']."\" style=\"max-width: 170px; max-height: 170px; -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.88, transparent), to(rgba(255, 255, 255, 0.5))); transform: rotateY(-10deg) translateZ(-35px);\">
+            $detailHTML .= "<td width=\"".$AlbumArtHeight."px\" valign=\"top\">
+                              <div style=\"width: ".$AlbumArtHeight."px; height: ".$AlbumArtHeight."px; perspective: ".$AlbumArtHeight."px; right: 0px; margin-bottom: 10px;\">
+                              	<img src=\"".@$positionInfo['albumArtURI']."\" style=\"max-width: ".$AlbumArtHeight."px; max-height: ".$AlbumArtHeight."px; -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.88, transparent), to(rgba(255, 255, 255, 0.5))); transform: rotateY(-10deg) translateZ(-35px);\">
                               </div>
                             </td>";
          }
